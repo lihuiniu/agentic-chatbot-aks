@@ -1,0 +1,12 @@
+[
+  {
+    "question": "What is Azure?",
+    "ground_truth": "Azure is a cloud platform by Microsoft.",
+    "model_answer": "Azure is a cloud computing platform developed by Microsoft."
+  },
+  {
+    "question": "What is Delta Lake?",
+    "ground_truth": "Delta Lake is optimized for large-scale data lakes.",
+    "model_answer": "Delta Lake enables ACID transactions and schema enforcement for big data."
+  }
+]

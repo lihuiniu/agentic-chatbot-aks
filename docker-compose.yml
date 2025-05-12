@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_HOST=redis
+      - MILVUS_HOST=milvus
+      - COSMOSDB_URI=http://cosmosdb:8081
+    depends_on:
+      - redis
+      - milvus
+
+  redis:
+    image: redis:8.0
+    ports:
+      - "6379:6379"
+
+  milvus:
+    image: milvusdb/milvus:v2.3.0
+    ports:
+      - "19530:19530"
+      - "19121:19121"
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"

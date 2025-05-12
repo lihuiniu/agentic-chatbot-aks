@@ -1,0 +1,8 @@
+fastapi==0.110.0
+uvicorn[standard]
+faiss-cpu
+redis
+langchain
+openai
+azure-cosmos
+delta-spark

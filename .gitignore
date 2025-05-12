@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# VS Code
+.vscode/
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+crash.log
+override.tf
+override.tf.json
+terraform.tfvars
+
+# Helm
+charts/
+*.tgz
+
+# Docker
+*.tar
+docker-compose.override.yml
+
+# Azure Pipelines
+azure-pipelines.yml
+
+# Langchain Logs
+.langchain/
+
+# GitHub Actions cache
+.github/workflows/*_cache/

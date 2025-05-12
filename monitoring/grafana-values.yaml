@@ -1,0 +1,4 @@
+adminUser: admin
+adminPassword: prom-graph
+service:
+  type: LoadBalancer
