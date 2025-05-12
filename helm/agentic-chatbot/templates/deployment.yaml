@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agentic-chatbot
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: agentic-chatbot
+  template:
+    metadata:
+      labels:
+        app: agentic-chatbot
+    spec:
+      containers:
+        - name: app
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - secretRef:
+                name: agentic-chatbot-secrets

@@ -1,0 +1,28 @@
+name: Deploy to AKS
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Build & Push Docker Image
+        run: |
+          az acr login --name ${{ secrets.ACR_NAME }}
+          docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/agentic-chatbot:latest .
+          docker push ${{ secrets.ACR_NAME }}.azurecr.io/agentic-chatbot:latest
+
+      - name: Deploy via Helm
+        run: |
+          az aks get-credentials --resource-group ${{ secrets.AKS_RG }} --name ${{ secrets.AKS_NAME }}
+          helm upgrade --install agentic-chatbot helm/agentic-chatbot --set image.repository=${{ secrets.ACR_NAME }}.azurecr.io/agentic-chatbot
